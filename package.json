@@ -1,13 +1,10 @@
 {
-  "name": "scales",
+  "name": "allscales",
   "version": "1.0.0",
+  "private": "true",
   "description": "Scales encyclopedia",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --hot --progress --colors",
-    "build": "webpack --progress --colors"
-  },
+  "main": "build.js",
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/danigb/scales.git"
@@ -25,13 +22,10 @@
   },
   "homepage": "https://github.com/danigb/scales",
   "devDependencies": {
-    "babel-core": "^5.6.15",
-    "babel-loader": "^5.2.2",
-    "node-libs-browser": "^0.5.2",
-    "react": "^0.13.3",
-    "react-hot-loader": "^1.2.7",
-    "react-router": "^0.13.3",
-    "webpack": "^1.10.0",
-    "webpack-dev-server": "^1.10.1"
+    "node-jsx": "^0.13.3",
+    "react": "^0.13.3"
+  },
+  "dependencies": {
+    "music-scale": "^0.5.0"
   }
 }
