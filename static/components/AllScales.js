@@ -16,7 +16,7 @@ var Scale = React.createClass({
 
 var ScaleGroup = React.createClass({
   propTypes: {
-      group: React.PropTypes.object,
+      group: React.PropTypes.array,
       size: React.PropTypes.number
   },
   render: function () {
@@ -34,7 +34,7 @@ var ScaleGroup = React.createClass({
 
 module.exports = React.createClass({
   propTypes: {
-      scales: React.PropTypes.object
+      scales: React.PropTypes.array
   },
   render: function () {
     var groups = this.props.scales.map(function (group, index) {

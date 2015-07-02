@@ -25,6 +25,7 @@
     "metalsmith": "^1.7.0",
     "metalsmith-templates": "^0.7.0",
     "node-jsx": "^0.13.3",
+    "handlebars": "^3.0.3",
     "react": "^0.13.3"
   },
   "dependencies": {

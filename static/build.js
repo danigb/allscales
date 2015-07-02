@@ -1,22 +1,26 @@
 var metalsmith = require('metalsmith')
 require('node-jsx').install()
 var React = require('react/addons')
+var templates = require('metalsmith-templates')
 
 metalsmith(__dirname)
-  .destination('./output')
+  .destination('output')
   .use(allscales('index.html'))
+  .use(templates('handlebars'))
   .build(function (err) {
     if (err) throw err
+    console.log('Metalmsith done!')
   })
 
+var all = require('./allscales.js')()
 function allscales (filename) {
   return function (files, metalsmith, done) {
-    files[filename] = { contents: new Buffer('hola!')}
+    var AllScalesApp = React.createFactory(require('./components/AllScales'))
+    var html = React.renderToString(AllScalesApp({ scales: all.scales }))
+    files[filename] = {
+      title: 'All scales',
+      contents: new Buffer(html)
+    }
+    done()
   }
 }
-
-var all = require('./allscales.js')()
-var AllScalesApp = React.createFactory(require('./components/AllScales'))
-
-var html = React.renderToString(AllScalesApp({ scales: all.scales }))
-console.log(html)
