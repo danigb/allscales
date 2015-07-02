@@ -7,12 +7,15 @@ var MAX = parseInt('111111111111', 2)
 
 module.exports = function (maxLeap) {
   maxLeap = maxLeap || 4
+  var modesCount = 0
+
   var groupedModes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map(function () { return [] })
   for (var i = MIN; i <= MAX; i++) {
     var binary = i.toString(2)
     var scale = new Scale(binary)
     if (scale.leap() <= maxLeap) {
       groupedModes[scale.length].push(scale)
+      modesCount++
     }
   }
   var groupedScales = groupedModes.map(function (group) {
@@ -29,5 +32,9 @@ module.exports = function (maxLeap) {
   // var modeLengths = groupedModes.map(function (g) { return g.length })
   var scaleLengths = groupedScales.map(function (g) { return g.length })
 
-  return { scales: groupedScales, scaleLengths: scaleLengths }
+  return {
+    maxLeap: maxLeap,
+    modesCount: modesCount,
+    scales: groupedScales,
+    scaleLengths: scaleLengths }
 }

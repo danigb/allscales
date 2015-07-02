@@ -22,10 +22,12 @@
   },
   "homepage": "https://github.com/danigb/scales",
   "devDependencies": {
+    "classnames": "^2.1.2",
+    "handlebars": "^3.0.3",
     "metalsmith": "^1.7.0",
     "metalsmith-templates": "^0.7.0",
+    "metalsmith-watch": "^1.0.1",
     "node-jsx": "^0.13.3",
-    "handlebars": "^3.0.3",
     "react": "^0.13.3"
   },
   "dependencies": {

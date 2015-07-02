@@ -1,4 +1,28 @@
 var React = require('react/addons')
+var classNames = require('classNames')
+
+var ALTERS = [0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0]
+var Binary = React.createClass({
+  propTypes: {
+    binary: React.PropTypes.string
+  },
+  render: function () {
+    var binary = this.props.binary.split('').map(function (digit, index) {
+      var names = classNames('digit',
+        {'one': digit === '1'},
+        {'alter': ALTERS[index] === 1})
+
+      return (
+        <div className={names}>{digit}</div>
+      )
+    })
+    return (
+      <div className='binary'>
+        {binary}
+      </div>
+    )
+  }
+})
 
 var Scale = React.createClass({
   propTypes: {
@@ -8,7 +32,7 @@ var Scale = React.createClass({
     return (
       <div className='scale'>
         <div className='decimal'>{this.props.scale.decimal}</div>
-        <div className='binary'>{this.props.scale.binary}</div>
+        <Binary binary={this.props.scale.binary} />
       </div>
     )
   }
@@ -25,7 +49,8 @@ var ScaleGroup = React.createClass({
     })
     return (
       <div className='scale-group'>
-        <h2>{this.props.size} note scales</h2>
+        <h2>{this.props.size} note scales
+          <small>({scales.length})</small></h2>
         {scales}
       </div>
     )
@@ -34,15 +59,16 @@ var ScaleGroup = React.createClass({
 
 module.exports = React.createClass({
   propTypes: {
-      scales: React.PropTypes.array
+      all: React.PropTypes.object
   },
   render: function () {
-    var groups = this.props.scales.map(function (group, index) {
-      if (group.length > 0) return <ScaleGroup size={index + 1} group={group} />
+    var groups = this.props.all.scales.map(function (group, index) {
+      if (group.length > 0) return <ScaleGroup size={index} group={group} />
     }).filter(function (g) { return g })
 
     return (
       <div className='allScales'>
+        <h1>All possible scales<small>{this.props.all.modesCount}</small></h1>
         {groups}
       </div>
     )
